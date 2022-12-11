@@ -1,19 +1,9 @@
-import React, { useContext, useState } from 'react';
-import TryunfoContext from '../context/TryunfoContext';
+import React, { useState } from 'react';
+import PropTypes from 'prop-types'
 
-function Card( { cardNameProp, cardImageProp, cardDescriptionProp, cardAttr1Prop, cardAttr2Prop, cardAttr3Prop, cardRareProp, cardTrunfoProp } ) {
-  
-  const {
-    cardName,
-    cardImage,
-    cardDescription,
-    cardAttr1,
-    cardAttr2,
-    cardAttr3,
-    cardRare,
-    cardTrunfo,
-  } = useContext(TryunfoContext);
+function CardDemonstration( { card } ) {
   const [isToggle, setIsToggle] = useState(false);
+
 
   const handleToggle = () => {
     setIsToggle(!isToggle);
@@ -30,12 +20,12 @@ function Card( { cardNameProp, cardImageProp, cardDescriptionProp, cardAttr1Prop
           <h3
             data-testid="name-card"
           >
-            { cardName || 'Insira um nome' }
+            { card.cardName || 'Insira um nome' }
 
           </h3>
           <img
-            src={ cardImage }
-            alt={ cardName }
+            src={ card.cardImage }
+            alt={ card.cardName }
             data-testid="image-card"
           />
 
@@ -43,7 +33,7 @@ function Card( { cardNameProp, cardImageProp, cardDescriptionProp, cardAttr1Prop
         <p
           data-testid="description-card"
         >
-          { cardDescription || 'Insira uma descrição'}
+          { card.cardDescription }
         </p>
         <div className="division">
           <p>Velocidade:</p>
@@ -51,7 +41,7 @@ function Card( { cardNameProp, cardImageProp, cardDescriptionProp, cardAttr1Prop
             data-testid="attr1-card"
           >
             {' '}
-            <span className="partTwo">{cardAttr1}</span>
+            <span className="partTwo">{ card.cardAttr1 }</span>
           </p>
         </div>
         <div className="division">
@@ -59,7 +49,7 @@ function Card( { cardNameProp, cardImageProp, cardDescriptionProp, cardAttr1Prop
           <p
             data-testid="attr2-card"
           >
-            <span className="partTwo">{cardAttr2}</span>
+            <span className="partTwo">{ card.cardAttr2 }</span>
           </p>
         </div>
         <div className="division">
@@ -67,7 +57,7 @@ function Card( { cardNameProp, cardImageProp, cardDescriptionProp, cardAttr1Prop
           <p
             data-testid="attr3-card"
           >
-            <span className="partTwo">{cardAttr3}</span>
+            <span className="partTwo">{ card.cardAttr3 }</span>
           </p>
         </div>
         <div className="division">
@@ -75,11 +65,11 @@ function Card( { cardNameProp, cardImageProp, cardDescriptionProp, cardAttr1Prop
           <p
             data-testid="rare-card"
           >
-            <span className="partTwo">{cardRare}</span>
+            <span className="partTwo">{ card.cardRare }</span>
           </p>
         </div>
       </div>
-      { cardTrunfo === true ? (
+      { card.cardTrunfo === true ? (
         <p data-testid="trunfo-card" id="trunfo">
           {' '}
           Super Trunfo
@@ -91,17 +81,17 @@ function Card( { cardNameProp, cardImageProp, cardDescriptionProp, cardAttr1Prop
   );
 }
 
-// Card.propTypes = {
-//   cardName: PropTypes.string.isRequired,
-//   cardImage: PropTypes.string.isRequired,
-//   cardDescription: PropTypes.string.isRequired,
-//   cardAttr1: PropTypes.string.isRequired,
-//   cardAttr2: PropTypes.string.isRequired,
-//   cardAttr3: PropTypes.string.isRequired,
-//   cardRare: PropTypes.string.isRequired,
-//   cardTrunfo: PropTypes.bool.isRequired,
-//   handleToggle: PropTypes.func.isRequired,
-//   isToggle: PropTypes.bool.isRequired,
-// };
+CardDemonstration.propTypes = {
+  card: PropTypes.shape({
+    cardName: PropTypes.string.isRequired,
+    cardImage: PropTypes.string.isRequired,
+    cardDescription: PropTypes.string.isRequired,
+    cardAttr1: PropTypes.string.isRequired,
+    cardAttr2: PropTypes.string.isRequired,
+    cardAttr3: PropTypes.string.isRequired,
+    cardRare: PropTypes.string.isRequired,
+    cardTrunfo: PropTypes.bool.isRequired,
+  })
+};
 
-export default Card;
+export default CardDemonstration;
